@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>许龄月个人页面</title>
+    <style>
+        :root {
+            --card-blur: 10px;
+            --font-color: #ffffff; /* 对比色 */
+        }
+
+        body {
+            font-family: 'HarmonyOS Sans SC', sans-serif;
+            width: 430px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gradient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(40deg, rgb(108, 0, 162), rgb(0, 17, 82));
+            z-index: -1;
+        }
+
+        .gradient-bg svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .gradients-container {
+            filter: url(#goo) blur(40px);
+            width: 100%;
+            height: 100%;
+        }
+
+        .gradients-container div {
+            position: absolute;
+            border-radius: 50%;
+            mix-blend-mode: hard-light;
+        }
+
+        .g1 {
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(circle at center, rgba(18, 113, 255, 0.8) 0, rgba(18, 113, 255, 0));
+            animation: moveVertical 30s ease infinite;
+            top: 10%;
+            left: 10%;
+        }
+
+        .g2 {
+            width: 70%;
+            height: 70%;
+            background: radial-gradient(circle at center, rgba(221, 74, 255, 0.8) 0, rgba(221, 74, 255, 0));
+            animation: moveInCircle 20s reverse infinite;
+            top: 30%;
+            left: 30%;
+        }
+
+        .g3 {
+            width: 60%;
+            height: 60%;
+            background: radial-gradient(circle at center, rgba(100, 220, 255, 0.8) 0, rgba(100, 220, 255, 0));
+            animation: moveInCircle 40s linear infinite;
+            top: 40%;
+            left: -10%;
+        }
+
+        .g4 {
+            width: 50%;
+            height: 50%;
+            background: radial-gradient(circle at center, rgba(200, 50, 50, 0.8) 0, rgba(200, 50, 50, 0));
+            animation: moveHorizontal 40s ease infinite;
+            top: 20%;
+            left: 50%;
+        }
+
+        @keyframes moveInCircle {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes moveVertical {
+            0% {
+                transform: translateY(-50%);
+            }
+            50% {
+                transform: translateY(50%);
+            }
+            100% {
+                transform: translateY(-50%);
+            }
+        }
+
+        @keyframes moveHorizontal {
+            0% {
+                transform: translateX(-50%) translateY(-10%);
+            }
+            50% {
+                transform: translateX(50%) translateY(10%);
+            }
+            100% {
+                transform: translateX(-50%) translateY(-10%);
+            }
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(var(--card-blur));
+            color: var(--font-color);
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .header img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .header-text {
+            text-align: left;
+        }
+
+        .header-text h1 {
+            font-weight: 900;
+            font-size: 36px;
+            color: var(--font-color);
+            margin: 0;
+        }
+
+        .header-text p {
+            font-weight: 700;
+            font-size: 24px;
+            color: var(--font-color);
+            margin: 0;
+        }
+
+        .divider {
+            width: 390px;
+            height: 1px;
+            background-color: #aaa;
+            margin: 15px auto;
+        }
+
+        .time {
+            text-align: center;
+            font-size: 100px;
+            font-weight: 900;
+            color: var(--font-color);
+            text-shadow: 2px 3px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .music-card, .profile-card, .social-card {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            color: var(--font-color);
+        }
+
+        .music-card {
+            width: 360px;
+            height: 110px;
+            padding: 15px 20px;
+            margin: 0 auto 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .music-card .top {
+            display: flex;
+            align-items: center;
+        }
+
+        .music-card img {
+            width: 58px;
+            height: 58px;
+            border-radius: 5px;
+        }
+
+        .music-card .info {
+            margin-left: 15px;
+            margin-top: 8px;
+        }
+
+        .music-card .info h2,
+        .music-card .info p {
+            margin: 0;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 10px;
+        }
+
+        .buttons img {
+            width: 30px;
+            height: 30px;
+        }
+
+        .profile-card {
+            width: 360px;
+            height: 229px;
+            padding: 10px;
+            margin: 0 auto 15px;
+        }
+
+        .profile-card .title {
+            font-weight: 900;
+            font-size: 30px;
+        }
+
+        .profile-card .details {
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .social-card {
+    width: 360px;
+    height: 50px; /* 初始高度 */
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: height 0.3s ease;
+    margin: 0 auto 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 居中处理 */
+}
+.social-card.open {
+    height: 229px; /* 完全展开后的高度 */
+}
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 15px;
+}
+.social-card-content {
+    display: none;
+    text-align: center;
+    padding: 10px; /* 增加额外内边距 */
+    font-size: 20px;
+    font-weight: 700;
+}
+.social-card.open .social-card-content {
+    display: block;
+}
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .social-icons img {
+            width: 30px;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="gradient-bg">
+        <svg xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <filter id="goo">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo" />
+                    <feBlend in="SourceGraphic" in2="goo" />
+                </filter>
+            </defs>
+        </svg>
+        <div class="gradients-container">
+            <div class="g1"></div>
+            <div class="g2"></div>
+            <div class="g3"></div>
+            <div class="g4"></div>
+        </div>
+    </div>
+    <div class="header">
+        <div class="header-text">
+            <h1>I'm 许龄月</h1>
+            <p>既见皇上，为何不拜</p>
+        </div>
+        <img src="XLY.jpg" alt="XLY">
+    </div>
+    <div class="divider"></div>
+    <div class="time" id="time-display">--:--</div>
+    <div class="music-card card">
+        <div class="top">
+            <img src="fengmian.png" alt="Music Cover">
+            <div class="info">
+                <h2>XLYの小曲</h2>
+                <p>A dream fly</p>
+            </div>
+        </div>
+        <div class="buttons">
+            <img src="shangyiqu.svg" alt="Previous">
+            <img src="kaishi.svg" alt="Play">
+            <img src="xiayiqu.svg" alt="Next">
+        </div>
+    </div>
+    <div class="divider"></div>
+    <div class="profile-card card">
+        <div class="title">朕的档案</div>
+        <div class="details">
+            <span>姓名: 许龄月</span><br>
+            <span>性别: 女</span><br>
+            <span>年龄: <span id="age">--</span>个月</span><br>
+            <span>星座: 摩羯座</span><br>
+            <span>地区: 重庆·中国</span><br>
+            <span>生日: 2010.12.29</span><br>
+            <span>电话: 186-8887-8246</span>
+        </div>
+    </div>
+    <div class="social-card closed card" id="social-card">
+      <div class="social-icons">
+          <img src="kuaishou.svg" alt="Kuaishou">
+          <img src="doyin.svg" alt="Douyin">
+          <img src="weixin.svg" alt="Weixin">
+          <img src="qq.svg" alt="QQ">
+          <img src="wangzhe.svg" alt="Wangzhe">
+      </div>
+      <div class="divider"></div>
+      <div class="social-card-content">
+          快手: ax1229ly<br>
+          抖音: 98871535984<br>
+          微信: aaaxly1229<br>
+          大抠抠: 1648776221<br>
+          王者荣耀: 思绪随了调_
+      </div>
+  </div>
+  
+    <script>
+        function updateTime() {
+            const time = new Date();
+            const hours = String(time.getHours()).padStart(2, '0');
+            const minutes = String(time.getMinutes()).padStart(2, '0');
+            document.getElementById('time-display').textContent = `${hours}:${minutes}`;
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        function updateAge() {
+            const birth = new Date(2010, 11, 29); 
+            const now = new Date();
+            const months = (now.getFullYear() - birth.getFullYear()) * 12 + now.getMonth() - birth.getMonth();
+            document.getElementById('age').textContent = months;
+        }
+        updateAge();
+
+        const socialCard = document.getElementById('social-card');
+        socialCard.addEventListener('click', () => {
+            socialCard.classList.toggle('open');
+        });
+    </script>
+</body>
+</html>
