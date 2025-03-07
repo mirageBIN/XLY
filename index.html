@@ -278,6 +278,64 @@
             height: 30px;
         }
     </style>
+    <style>
+    /* 修改了宽度设置 */
+    body {
+        font-family: 'HarmonyOS Sans SC', sans-serif;
+        width: 100%;
+        max-width: 430px; /* 保持最大宽度 */
+        margin: 0 auto;
+        position: relative;
+        overflow-x: hidden; /* 防止横向滚动 */
+    }
+
+    /* 添加媒体查询 */
+    @media (max-width: 600px) {
+        .header {
+            flex-Adirection: column; /* 手机竖屏时垂直排列 */
+            text-align: center;
+        }
+        
+        .header img {
+            margin: 0 0 10px 0; /* 调整头像间距 */
+        }
+        
+        .time {
+            font-size: 15vw; /* 响应式字体 */
+        }
+        
+        .divider {
+            width: 90%; /* 相对宽度 */
+        }
+        
+        /* 卡片宽度调整 */
+        .music-card,
+        .profile-card,
+        .social-card {
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* 缩小标题字号 */
+        .header-text h1 {
+            font-size: 8vw;
+        }
+        .header-text p {
+            font-size: 6vw;
+        }
+        
+        /* 个人信息字号调整 */
+        .profile-card .title {
+            font-size: 6vw;
+        }
+        .profile-card .details {
+            font-size: 4vw;
+        }
+    }
+
+    /* 其他原有样式保持不变... */
+</style>
 </head>
 <body>
     <div class="gradient-bg">
